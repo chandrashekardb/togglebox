@@ -1,0 +1,237 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    /* 1rem = 10px */
+    color: #24305f;
+    overflow-x: hidden;
+}
+ 
+body{
+    overflow-x: hidden;
+}
+
+/* Navbar Section  */
+.header{
+    padding: 0px 4.8rem;
+    height: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e7f5ff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.header .logo{
+    height: 4rem;
+}
+
+.navbar-list{
+    display: flex;
+    gap: 4.8rem;
+    list-style: none;
+}
+
+/* if "herf" prested in <a> then only we use this link and visited*/
+.navbar-link:link,
+.navbar-link:visited{
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #212529;
+    transition: all 0.3s;
+}
+
+.navbar-link:hover,
+.navbar-link:active{
+    color: #364fc7;
+}
+
+.mobile-navbar-btn{
+    display: none ;
+    background: transparent;
+    cursor: pointer;
+}
+ 
+.mobile-nav-icon{
+    width: 4rem;
+    height: 4rem;
+    color: #364fc7
+}
+
+.mobile-nav-icon[name="close-outline"]{
+    display: none;
+}
+
+/* ===========================
+Responsive code
+=========================== */
+/* 980px  */
+@media(max-width: 62em){
+.mobile-navbar-btn{
+    display: block;
+    z-index: 999;
+    border: 3px solid black;
+    color: #212529;
+}
+.header{
+    position: relative;
+} 
+
+
+ .navbar{
+    /* for animation never go with display */
+     /* display: none; */
+     width: 100%;
+     height: 100vh;
+     background-color: #e7f5ff;
+     position: absolute;
+     top: 0;
+     left: 0;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     /* to get the transition  */
+     transform: translateX(100%);
+     transition: all 0.5s linear;
+
+     opacity: 0;
+     visibility: hidden;
+     pointer-events: none;
+ }
+
+ .navbar-list{
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .activeone .navbar{
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+ }
+
+ .activeone .mobile-navbar-btn .mobile-nav-icon[name="close-outline"]{
+     display: block;
+ }
+
+ .activeone .mobile-navbar-btn .mobile-nav-icon[name="menu-outline"]{
+    display: none;
+}
+}
+
+/* Below 560px */
+@media(max-width: 35em){
+    .header{
+        padding: 0 2.4rem;
+    }
+
+    .header .logo{
+        width: 60%;
+    }
+}
+
+/* Hero Secion  */
+
+body{
+    background-color: #fffdfb;
+}
+
+.accordion{
+    width: 50%;
+    margin: 200px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.item{
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 30px;
+    align-items: center;
+    padding: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.item h2{
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.number{
+    font-size: 32px;
+}
+
+.icon{
+    width: 24px;
+    height: 24px;
+    color: #1864ab;
+}
+
+.hidden-box{
+    grid-column: 2/3;
+    display: none;
+}
+
+.hidden-box p{
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    word-spacing: 3px;
+}
+
+.hidden-box ul{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.hidden-box ul li{
+    margin-left: 16px;
+    line-height: 1.5;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    word-spacing: 3px;
+}
+
+.active{
+    position: relative;
+}
+
+.active::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    border-top: 3px solid #1864ab;
+    animation: borderline 1s linear forwards;
+}
+
+@keyframes borderline {
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+    
+}
+
+.active .hidden-box{
+    display: block;
+}
